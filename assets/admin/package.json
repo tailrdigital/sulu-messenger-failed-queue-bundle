@@ -7,9 +7,14 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/plugin-proposal-decorators": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
     "eslint": "^8.52.0",
     "eslint-plugin-jsdoc": "^46.8.2",
-    "sulu-admin-bundle": "file:../../../AdminBundle/Resources/js"
+    "eslint-plugin-react": "^7.33.2",
+    "sulu-admin-bundle": "file:../../vendor/sulu/sulu/src/Sulu/Bundle/AdminBundle/Resources/js"
   },
   "peerDependencies": {
     "mobx": "^4.0.0",

@@ -1,18 +1,32 @@
 {
-  "extends": ["plugin:jsdoc/recommended"],
-  "env": {
-    "es6": true
-  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:jsdoc/recommended"
+  ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": "latest",
     "ecmaFeatures": {
       "jsx": true,
       "impliedStrict": true
+    },
+    "babelOptions": {
+      "babelrc": true
     }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true
   },
   "rules": {
     "jsdoc/require-param-description": 0,
-    "jsdoc/require-returns-description": 0
+    "jsdoc/require-returns-description": 0,
+    "react/prop-types": 0
   }
 }
