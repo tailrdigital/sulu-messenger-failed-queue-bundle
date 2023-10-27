@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>failed_queue_list</key>
+    <properties>
+        <property name="id" visibility="always" translation="ID" />
+        <property name="messageClass" visibility="yes" sortable="false" translation="Message class"/>
+        <property name="error" visibility="yes" sortable="false" translation="Error message"/>
+        <property name="errorCode" visibility="yes" sortable="false" translation="Error code"/>
+        <property name="errorClass" visibility="yes" sortable="false" translation="Error class"/>
+        <property name="failedAt" visibility="yes" translation="Failed at">
+            <transformer type="datetime"/>
+        </property>
+    </properties>
+</list>

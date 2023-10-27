@@ -1,0 +1,14 @@
+services:
+  tailr.sulu_messenger_failed_queue_bundle.message_detail_serializer:
+    class: Symfony\Component\Serializer\Serializer
+    arguments:
+      - [ '@serializer.normalizer.object' ]
+      - [ '@serializer.encoder.json' ]
+
+  Tailr\SuluMessengerFailedQueueBundle\Infrastructure\Sulu\Admin\MessengerFailedQueueAdmin:
+    arguments:
+      - '@sulu_admin.view_builder_factory'
+      - '@sulu_security.security_checker'
+    tags:
+      - { name: 'sulu.admin' }
+      - { name: 'sulu.context', context: 'admin' }

@@ -1,0 +1,23 @@
+services:
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandler:
+    arguments:
+      - '@messenger.transport.failed'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandler:
+    arguments:
+      - 'failed'
+      - '@messenger.transport.failed'
+      - '@messenger.routable_message_bus'
+      - '@event_dispatcher'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RequeueHandler:
+    arguments:
+      $receiver: '@messenger.transport.failed'
+      $messageBus: '@messenger.routable_message_bus'
+      $stampsToRemove:
+        - 'Symfony\Component\Messenger\Stamp\ErrorDetailsStamp'
+        - 'Symfony\Component\Messenger\Stamp\DelayStamp'
+        - 'Symfony\Component\Messenger\Stamp\RedeliveryStamp'
+        - 'Symfony\Component\Messenger\Stamp\SentToFailureTransportStamp'
+        - 'Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineReceivedStamp'
+        - 'Symfony\Component\Messenger\Stamp\TransportMessageIdStamp'
