@@ -5,7 +5,7 @@ This package provides a sulu admin panel for managing the failed messages in the
 ## Installation
 
 ```sh
-composer require tailr/sulu-messenger-failed-queue-bundle
+composer require tailrdigital/sulu-messenger-failed-queue-bundle
 ```
 
 Make sure the bundle is activated in `config/bundles.php`:

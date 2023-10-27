@@ -1,5 +1,5 @@
 {
-    "name": "tailr/sulu-messenger-failed-queue-bundle",
+    "name": "tailrdigital/sulu-messenger-failed-queue-bundle",
     "type": "symfony-bundle",
     "autoload": {
         "psr-4": {
