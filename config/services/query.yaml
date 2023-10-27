@@ -1,0 +1,12 @@
+services:
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessage:
+    arguments:
+      - '@messenger.transport.failed'
+      - '@serializer'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessageInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessage'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessages:
+    arguments:
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Repository\FailedQueueRepository'
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessageInterface'

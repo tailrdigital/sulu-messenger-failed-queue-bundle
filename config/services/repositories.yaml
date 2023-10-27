@@ -1,0 +1,5 @@
+services:
+  Tailr\SuluMessengerFailedQueueBundle\Infrastructure\Doctrine\Repository\DoctrineFailedQueueRepository:
+    arguments:
+      - '@doctrine.orm.entity_manager'
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Repository\FailedQueueRepository: '@Tailr\SuluMessengerFailedQueueBundle\Infrastructure\Doctrine\Repository\DoctrineFailedQueueRepository'

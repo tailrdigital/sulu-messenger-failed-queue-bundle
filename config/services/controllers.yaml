@@ -1,0 +1,28 @@
+services:
+  Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\DeleteController:
+    arguments:
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandler'
+    tags: ['controller.service_arguments']
+
+  Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\FetchController:
+    arguments:
+      - '@serializer'
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessage'
+    tags: [ 'controller.service_arguments' ]
+
+  Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\ListController:
+    arguments:
+      - '@serializer'
+      - '@sulu_core.list_rest_helper'
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessages'
+    tags: ['controller.service_arguments']
+
+  Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\RequeueController:
+    arguments:
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RequeueHandler'
+    tags: [ 'controller.service_arguments' ]
+
+  Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\RetryController:
+    arguments:
+      - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandler'
+    tags: [ 'controller.service_arguments' ]
