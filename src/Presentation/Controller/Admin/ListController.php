@@ -7,11 +7,10 @@ namespace Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin;
 use Sulu\Component\Rest\ListBuilder\ListRestHelperInterface;
 use Sulu\Component\Rest\ListBuilder\PaginatedRepresentation;
 use Sulu\Component\Security\SecuredControllerInterface;
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessages;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\SearchCriteria;
@@ -19,6 +18,7 @@ use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\SearchCriteria;
 use function Psl\Str\is_empty;
 use function Psl\Type\int;
 
+#[Route(path: '/messenger-failed-queue', name: 'tailr.messenger_failed_queue_list', options: ['expose' => true], methods: ['GET'])]
 final class ListController extends AbstractSecuredMessengerFailedQueueController implements SecuredControllerInterface
 {
     public const RESOURCE_KEY = 'tailr_messenger_failed_queue';

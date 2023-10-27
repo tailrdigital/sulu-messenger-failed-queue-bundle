@@ -23,7 +23,7 @@ final class FetchMessage implements FetchMessageInterface
 {
     public function __construct(
         private readonly ListableReceiverInterface $receiver,
-        private readonly SerializerInterface $messageDetailSerializer,
+        private readonly SerializerInterface $serializer,
     ) {
     }
 
@@ -50,7 +50,7 @@ final class FetchMessage implements FetchMessageInterface
         }
 
         return $failedMessage
-            ->withMessageDetails($this->messageDetailSerializer->serialize($message->getMessage(), 'json'))
+            ->withMessageDetails($this->serializer->serialize($message->getMessage(), 'json'))
             ->withMessageBusName($message->last(BusNameStamp::class)?->getBusName())
             ->withMessageOriginalTransport($message->last(SentToFailureTransportStamp::class)?->getOriginalReceiverName())
             ->withErrorTrace($lastErrorStamp?->getFlattenException()?->getTraceAsString())

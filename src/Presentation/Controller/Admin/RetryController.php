@@ -9,8 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Symfony\Component\Routing\Annotation\Route;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandler;
 
+#[Route(path: '/messenger-failed-queue/{id}/retry', name: 'tailr.messenger_failed_queue_retry', methods: ['PUT'])]
 final class RetryController extends AbstractSecuredMessengerFailedQueueController implements SecuredControllerInterface
 {
     public function __construct(

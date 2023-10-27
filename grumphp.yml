@@ -4,7 +4,7 @@ parameters:
     # Project preferences
     commit_project_names: "(QARCH)" # The prefix(es) of the jira project.
     run_phpstan: false # Enable after installing the phpstan preset
-    run_psalm: false # Enable after installing the psalm preset
+    run_psalm: true # Enable after installing the psalm preset
     run_security_advisories: false # Enable after installing the security advisories preset
     phpunit.parallel: false # Decide if it is possible to run phpunit tests in parallel or not.
 
