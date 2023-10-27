@@ -1,0 +1,27 @@
+{
+  "name": "sulu-messenger-failed-queue-bundle",
+  "description": " A failed queue screen in Sulu admin for Symfony messenger ",
+  "license": "MIT",
+  "repository": "git@github.com:tailrdigital/sulu-messenger-failed-queue-bundle.git",
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-plugin-jsdoc": "^46.8.2",
+    "sulu-admin-bundle": "file:../../../AdminBundle/Resources/js"
+  },
+  "peerDependencies": {
+    "mobx": "^4.0.0",
+    "mobx-react": "^5.0.0",
+    "moment": "*",
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
+    "sulu-admin-bundle": "*"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "lint": "eslint --fix-dry-run ."
+  }
+}

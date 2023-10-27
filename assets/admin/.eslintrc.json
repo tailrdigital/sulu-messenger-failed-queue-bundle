@@ -1,0 +1,18 @@
+{
+  "extends": ["plugin:jsdoc/recommended"],
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true,
+      "impliedStrict": true
+    }
+  },
+  "rules": {
+    "jsdoc/require-param-description": 0,
+    "jsdoc/require-returns-description": 0
+  }
+}
