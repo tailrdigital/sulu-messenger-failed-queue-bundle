@@ -14,7 +14,7 @@ final class FetchMessages
 {
     public function __construct(
         private readonly FailedQueueRepositoryInterface $repository,
-        private readonly FetchMessageInterface $fetchAction,
+        private readonly FetchMessageInterface $fetchMessage,
     ) {
     }
 
@@ -23,7 +23,7 @@ final class FetchMessages
         $messages = [];
         foreach ($this->repository->findMessageIds($criteria) as $messageId) {
             try {
-                $messages[] = ($this->fetchAction)($messageId, withDetails: false);
+                $messages[] = ($this->fetchMessage)($messageId, withDetails: false);
             } catch (MessageDecodingFailedException) {
             }
         }

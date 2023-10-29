@@ -26,7 +26,7 @@ final class ListController extends AbstractSecuredMessengerFailedQueueController
     public function __construct(
         private readonly SerializerInterface $serializer,
         private readonly ListRestHelperInterface $listRestHelper,
-        private readonly FetchMessages $query,
+        private readonly FetchMessages $fetchMessages,
     ) {
     }
 
@@ -34,7 +34,7 @@ final class ListController extends AbstractSecuredMessengerFailedQueueController
     {
         $sortColumn = $this->listRestHelper->getSortColumn();
         $limit = int()->coerce($this->listRestHelper->getLimit());
-        $list = ($this->query)(
+        $list = ($this->fetchMessages)(
             new SearchCriteria(
                 (string) $this->listRestHelper->getSearchPattern(),
                 is_empty($sortColumn) ? 'created_at' : $sortColumn,

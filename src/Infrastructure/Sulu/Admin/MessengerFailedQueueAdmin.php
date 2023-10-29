@@ -17,9 +17,9 @@ use Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\ListContr
 
 class MessengerFailedQueueAdmin extends Admin
 {
-    final public const SECURITY_CONTEXT = 'failed_queue';
+    final public const SECURITY_CONTEXT = 'tailr_failed_queue';
     final public const LIST_KEY = 'failed_queue_list';
-    private const LIST_VIEW = 'tailr.view_failed_queue_list';
+    private const LIST_VIEW = 'view_failed_queue_list';
 
     public function __construct(
         private readonly ViewBuilderFactoryInterface $viewBuilderFactory,
@@ -34,7 +34,7 @@ class MessengerFailedQueueAdmin extends Admin
         }
 
         $navigationItem = new NavigationItem('Failed Queue');
-        $navigationItem->setPosition(10);
+        $navigationItem->setPosition(100);
         $navigationItem->setView(self::LIST_VIEW);
         $navigationItemCollection->get(Admin::SETTINGS_NAVIGATION_ITEM)->addChild($navigationItem);
     }
@@ -45,28 +45,30 @@ class MessengerFailedQueueAdmin extends Admin
             return;
         }
 
-        $listToolbarActions = [];
-
+        $listItemActions = $listToolbarActions = [];
+        if ($this->securityChecker->hasPermission(self::SECURITY_CONTEXT, PermissionTypes::EDIT)) {
+            $listItemActions[] = new ListItemAction('failed_queue.view_retry');
+        }
         if ($this->securityChecker->hasPermission(self::SECURITY_CONTEXT, PermissionTypes::DELETE)) {
             $listToolbarActions[] = new ToolbarAction('sulu_admin.delete');
         }
 
-        // Configure List View
-        $listView = $this->viewBuilderFactory->createListViewBuilder(self::LIST_VIEW, '/messenger-failed-queue')
-            ->setResourceKey(ListController::RESOURCE_KEY)
-            ->setListKey(self::LIST_KEY)
-            ->setTitle('Failed Queue')
-            ->addListAdapters(['table'])
-            ->addItemActions([new ListItemAction('failed_queue.view_retry')])
-            ->addToolbarActions($listToolbarActions);
-        $viewCollection->add($listView);
+        $viewCollection->add(
+            $this->viewBuilderFactory->createListViewBuilder(self::LIST_VIEW, '/messenger-failed-queue')
+                ->setResourceKey(ListController::RESOURCE_KEY)
+                ->setListKey(self::LIST_KEY)
+                ->setTitle('Failed Queue')
+                ->addListAdapters(['table'])
+                ->addItemActions($listItemActions)
+                ->addToolbarActions($listToolbarActions)
+        );
     }
 
     public function getSecurityContexts(): array
     {
         return [
             self::SULU_ADMIN_SECURITY_SYSTEM => [
-                Admin::SETTINGS_NAVIGATION_ITEM => [
+                'Settings' => [
                     self::SECURITY_CONTEXT => [
                         PermissionTypes::VIEW,
                         PermissionTypes::EDIT,

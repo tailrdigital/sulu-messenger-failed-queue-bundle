@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "phpro/symfony-conventions": "^1.4",
+        "phpspec/prophecy-phpunit": "^2.0",
         "psalm/plugin-symfony": "^5.0",
         "vimeo/psalm": "^5.13",
         "weirdan/doctrine-psalm-plugin": "^2.8"

@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessageInterface;
 
@@ -19,7 +18,7 @@ final class FetchController extends AbstractSecuredMessengerFailedQueueControlle
 {
     public function __construct(
         private readonly SerializerInterface $serializer,
-        private readonly FetchMessageInterface $query,
+        private readonly FetchMessageInterface $fetchMessage,
     ) {
     }
 
@@ -27,9 +26,8 @@ final class FetchController extends AbstractSecuredMessengerFailedQueueControlle
     {
         return new JsonResponse(
             $this->serializer->serialize(
-                ($this->query)($id, withDetails: true),
+                ($this->fetchMessage)($id, withDetails: true),
                 'json',
-                ['json_encode_options' => JsonResponse::DEFAULT_ENCODING_OPTIONS, DateTimeNormalizer::FORMAT_KEY => 'Y-m-d H:i:s']
             ),
             json: true
         );
