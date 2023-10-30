@@ -1,0 +1,54 @@
+name: GrumPHP
+
+on:
+  pull_request: ~
+  push: ~
+  schedule:
+    - cron: '0 9 * * 5'
+
+permissions:
+  contents: read
+
+jobs:
+    run:
+        runs-on: ${{ matrix.operating-system }}
+        strategy:
+            matrix:
+                operating-system: [ubuntu-latest, macos-latest] #windows-latest currently not working
+                php-versions: ['8.1', '8.2']
+                composer-options: ['', '--prefer-lowest']
+                composer-versions: ['composer:v2']
+            fail-fast: false
+        name: PHP ${{ matrix.php-versions }} @ ${{ matrix.operating-system }} with ${{ matrix.composer-versions }} ${{ matrix.composer-options }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@master
+            - name: Install PHP
+              uses: shivammathur/setup-php@master
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  tools: ${{ matrix.composer-versions }}
+                  extensions: xdebug, mbstring, posix
+            - name: Check Versions
+              run: |
+                php -v
+                php -m
+                composer --version
+            - name: Get composer cache directory
+              id: composercache
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+            - name: Cache dependencies
+              uses: actions/cache@v3
+              with:
+                  path: ${{ steps.composercache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+                  restore-keys: ${{ runner.os }}-composer-
+            - name: Install dependencies
+              run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }}
+            - name: Set git variables
+              run: |
+                git config --global user.email "you@example.com"
+                git config --global user.name "Your Name"
+                git config --global protocol.file.allow always
+            - name: Run the tests
+              run: php vendor/bin/grumphp run --no-interaction
