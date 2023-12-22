@@ -10,3 +10,10 @@ parameters:
 
     # Personal preferences
     stop_on_first_failure: false
+    grumhp_exec_command: php
+
+grumphp:
+    tasks:
+        clover_coverage:
+            clover_file: var/coverage.xml
+            level: 100

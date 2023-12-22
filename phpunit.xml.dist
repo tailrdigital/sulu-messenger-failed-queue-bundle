@@ -8,7 +8,14 @@
         <testsuite name="Unit">
             <directory>./tests/Unit</directory>
         </testsuite>
+        <testsuite name="Functional">
+            <directory>./tests/Functional</directory>
+        </testsuite>
     </testsuites>
+
+    <php>
+        <env name="DATABASE_URL" value="postgresql://root:toor@localhost:5432/messenger-queue?serverVersion=14&amp;charset=utf8"/>
+    </php>
 
     <coverage processUncoveredFiles="true">
         <include>

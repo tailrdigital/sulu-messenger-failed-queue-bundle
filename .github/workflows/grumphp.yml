@@ -45,6 +45,8 @@ jobs:
                   restore-keys: ${{ runner.os }}-composer-
             - name: Install dependencies
               run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }}
+            - name: Start containers
+              run: docker-compose -f "docker-compose.yml" up -d --build
             - name: Set git variables
               run: |
                 git config --global user.email "you@example.com"
@@ -52,3 +54,6 @@ jobs:
                 git config --global protocol.file.allow always
             - name: Run the tests
               run: php vendor/bin/grumphp run --no-interaction
+            - name: Stop containers
+              if: always()
+              run: docker-compose -f "docker-compose.yml" down

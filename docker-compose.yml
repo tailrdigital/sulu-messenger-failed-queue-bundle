@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:14.5
+    container_name: messenger-queue-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-root}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-toor}
+      POSTGRES_DB: ${POSTGRES_DB:-messenger-queue}
+    volumes:
+      - messenger-queue-db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "root", "-d", "messenger-queue" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+volumes:
+  messenger-queue-db: {}
