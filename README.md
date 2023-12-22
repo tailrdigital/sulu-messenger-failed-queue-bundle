@@ -1,7 +1,8 @@
 # Sulu Messenger Failed Queue
 
 This package provides a Sulu admin panel for managing the failed messages in the failure queue of symfony/messenger. 
-Via the admin interface you are able to check the error/exception details of each failed message, and you can trigger a requeue/retry if needed. 
+
+Via the admin panel you are able to check the error/exception details of each failed message, and you can trigger a requeue/retry if needed. 
 
 ## Demo
 ![Sulu Messenger Failed Queue In Action](/doc/images/sulu-messenger-failed-queue.gif)
@@ -60,17 +61,17 @@ framework:
 ```
 
 #### Permissions
-Make sure you've set the correct permissions in the Sulu backend for this package. Go to _Settings > User Roles_ and enable the permissions you need. 
+Make sure you've set the correct permissions in the Sulu admin for this package. Go to _Settings > User Roles_ and enable the permissions you need. Afterwards you could find the Failed Queue view/panel via _Settings > Failed Queue_. 
 
 ## Configuration
 
-If you have a non-standard failed messenger configuration, you are able to overwrite the default settings by creation a `config/packages/sulu_messenger_failed_queue.yaml` file.
+If you have a non-default failure queue configuration, you are able to overwrite our default settings by creating a `config/packages/sulu_messenger_failed_queue.yaml` file.
 
 ```yaml
 sulu_messenger_failed_queue:
-    failure_transport_service: 'messenger.transport.failed'
-    failure_transport_table: 'messenger_messages'
-    failure_transport_queue_name: 'failed'
+    failure_transport_service: 'messenger.transport.failed_high_priority' # Default 'messenger.transport.failed'
+    failure_transport_table: 'failed_messages' # Default 'messenger_messages'
+    failure_transport_queue_name: 'failed_high_priority' # Default 'failed'
 ```
 
 If needed you can define the configured (failed) transport service definition or alias name via `failure_transport_service`. 
@@ -78,4 +79,4 @@ On the other hand you could modify the database table name via `failure_transpor
 
 ## Known limitations
 
-The symfony/messenger package allows to configure multiple failure queues, but this package only has support for visualizing one failed queue.
+The symfony/messenger package has support for multiple failure queues/transports, but this package only has support for visualizing and managing one (doctrine) failure queue/transport.
