@@ -49,6 +49,7 @@ class MessengerFailedQueueAdmin extends Admin
 
         if ($this->securityChecker->hasPermission(self::SECURITY_CONTEXT, PermissionTypes::DELETE)) {
             $listToolbarActions[] = new ToolbarAction('sulu_admin.delete');
+            $listToolbarActions[] = new ToolbarAction('failed_queue.bulk');
         }
 
         // Configure List View
