@@ -1,6 +1,9 @@
 import React, {useState, ReactNode} from "react";
+import {errorStyle, successStyle} from "../types/style";
+
 import {Checkbox, Dialog} from "sulu-admin-bundle/components";
 import {translate} from "sulu-admin-bundle/utils";
+
 import MessagesDetails from "./MessageDetails";
 import {retryMessage} from "../api/retryMessage";
 
@@ -33,7 +36,7 @@ const useRetryMessageLogic = ({failedMessage}) => {
         setError(undefined);
 
         try {
-            await retryMessage(failedMessage.id, withRequeue);
+            await retryMessage([failedMessage.id], withRequeue);
         } catch (error) {
             setError(error);
         }
@@ -44,10 +47,6 @@ const useRetryMessageLogic = ({failedMessage}) => {
 
     return {loading, executed, error, retryAction};
 }
-
-
-const errorStyle = {color: "red"};
-const successStyle = {color: "green"};
 
 /**
  *
