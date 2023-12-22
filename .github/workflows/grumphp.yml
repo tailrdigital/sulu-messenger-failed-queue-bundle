@@ -46,7 +46,7 @@ jobs:
             - name: Install dependencies
               run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-options }}
             - name: Start containers
-              run: docker-compose -f "docker-compose.yml" up -d --build
+              run: docker-compose -f "docker-compose.yml" up -d --build --wait
             - name: Set git variables
               run: |
                 git config --global user.email "you@example.com"
