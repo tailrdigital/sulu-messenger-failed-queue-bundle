@@ -5,7 +5,9 @@ This package provides a Sulu admin panel for managing the failed messages in the
 Via the admin panel you are able to check the error/exception details of each failed message, and you can trigger a requeue/retry if needed. 
 
 ## Demo
-![Sulu Messenger Failed Queue In Action](/doc/images/sulu-messenger-failed-queue.gif)
+
+https://github.com/tailrdigital/sulu-messenger-failed-queue-bundle/assets/1618158/77cebd91-e62c-42f3-b976-4410bea7b9d2
+
 
 ## Installation
 
