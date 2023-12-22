@@ -19,7 +19,7 @@ use function Psl\Type\instance_of;
 /**
  * @psalm-suppress InternalClass, InternalMethod
  */
-final class RetryHandler
+final class RetryHandler implements RetryHandlerInterface
 {
     private ?\Throwable $exception = null;
 

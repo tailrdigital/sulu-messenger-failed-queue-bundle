@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+        colors="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Functional">
+            <directory>./tests/Functional</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="DATABASE_URL" value="postgresql://root:toor@127.0.0.1:5432/messenger-queue?serverVersion=14&amp;charset=utf8"/>
+    </php>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <exclude>
+            <file>src/SuluMessengerFailedQueueBundle.php</file>
+            <directory suffix=".php">src/Infrastructure/Sulu/Admin</directory>
+            <directory suffix=".php">src/Infrastructure/Symfony/DependencyInjection</directory>
+        </exclude>
+        <report>
+            <clover outputFile="var/coverage.xml"/>
+        </report>
+    </coverage>
+</phpunit>

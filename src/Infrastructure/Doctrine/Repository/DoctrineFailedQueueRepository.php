@@ -18,6 +18,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly string $tableName = 'messenger_messages',
+        private readonly string $queueName = 'failed',
     ) {
     }
 
@@ -26,10 +27,14 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
         $queryBuilder = $this->buildQuery($criteria);
         $queryBuilder->setMaxResults($criteria->limit());
         $queryBuilder->setFirstResult($criteria->offset());
-        $queryBuilder->orderBy(
-            'm.'.('createdAt' === $criteria->sortColumn()) ? 'created_at' : $criteria->sortColumn(),
-            $criteria->sortDirection()
-        );
+        $sortColumn = match ($column = $criteria->sortColumn()) {
+            'failedAt' => 'created_at',
+            default => $column,
+        };
+        $sortDirection = $criteria->sortDirection();
+        ($sortColumn && $sortDirection) ?
+            $queryBuilder->orderBy('m.'.$sortColumn, $sortDirection) :
+            $queryBuilder->orderBy('m.created_at', 'DESC');
 
         /** @var int[] $result */
         $result = $queryBuilder->executeQuery()->fetchFirstColumn();
@@ -51,7 +56,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
         $queryBuilder->select('m.id')
             ->from($this->tableName, 'm')
             ->andWhere($queryBuilder->expr()->eq('queue_name', ':queueName'))
-            ->setParameter('queueName', 'failed');
+            ->setParameter('queueName', $this->queueName);
         if (!is_empty($searchString = $criteria->searchString())) {
             $queryBuilder->andWhere($queryBuilder->expr()->like('lower(m.body)', ':search'))
                 ->setParameter('search', '%'.lowercase($searchString).'%');

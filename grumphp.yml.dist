@@ -2,7 +2,7 @@ imports:
     - { resource: vendor/phpro/symfony-conventions/grumphp-convention.yml }
 parameters:
     # Project preferences
-    commit_project_names: "(QARCH)" # The prefix(es) of the jira project.
+    commit_project_names: "(.*)" # The prefix(es) of the jira project.
     run_phpstan: false # Enable after installing the phpstan preset
     run_psalm: true # Enable after installing the psalm preset
     run_security_advisories: false # Enable after installing the security advisories preset
@@ -10,3 +10,13 @@ parameters:
 
     # Personal preferences
     stop_on_first_failure: false
+    grumhp_exec_command: php
+
+grumphp:
+    tasks:
+        clover_coverage:
+            clover_file: var/coverage.xml
+            level: 100
+        git_commit_message:
+            metadata:
+                enabled: false

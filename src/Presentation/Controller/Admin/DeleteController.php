@@ -6,20 +6,19 @@ namespace Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin;
 
 use Sulu\Component\Security\SecuredControllerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandler;
+use Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandlerInterface;
 
 #[Route(path: '/messenger-failed-queue/{id}', name: 'app.messenger_failed_queue_delete', methods: ['DELETE'])]
 final class DeleteController extends AbstractSecuredMessengerFailedQueueController implements SecuredControllerInterface
 {
     public function __construct(
-        private readonly DeleteHandler $handler,
+        private readonly DeleteHandlerInterface $handler,
     ) {
     }
 
-    public function __invoke(int $id, Request $request): Response
+    public function __invoke(int $id): Response
     {
         ($this->handler)($id);
 

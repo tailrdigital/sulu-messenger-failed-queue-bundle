@@ -20,7 +20,7 @@ use function Psl\Type\vec;
 /**
  * @psalm-suppress InternalMethod
  */
-final class RequeueHandler
+final class RequeueHandler implements RequeueHandlerInterface
 {
     /**
      * @var class-string[]

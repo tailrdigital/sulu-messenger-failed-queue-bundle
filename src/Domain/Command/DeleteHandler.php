@@ -10,7 +10,7 @@ use Symfony\Component\Messenger\Transport\Receiver\ListableReceiverInterface;
 
 use function Psl\Type\instance_of;
 
-final class DeleteHandler
+final class DeleteHandler implements DeleteHandlerInterface
 {
     public function __construct(
         private readonly ListableReceiverInterface $receiver,

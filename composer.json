@@ -12,8 +12,9 @@
         }
     },
     "require": {
-        "php": "^8.1",
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "azjezz/psl": "^2.6",
+        "doctrine/dbal": "^3.0",
         "doctrine/orm": "^2.14",
         "sulu/sulu": "^2.5",
         "jackalope/jackalope-doctrine-dbal": "^1.7",
@@ -25,10 +26,13 @@
         "symfony/messenger": "^6.0"
     },
     "require-dev": {
-        "phpro/symfony-conventions": "^1.4",
-        "psalm/plugin-symfony": "^5.0",
-        "vimeo/psalm": "^5.13",
-        "weirdan/doctrine-psalm-plugin": "^2.8"
+        "php-cs-fixer/shim": "^3.41",
+        "phpro/symfony-conventions": "^1.5",
+        "phpspec/prophecy-phpunit": "^2.1",
+        "phpunit/phpunit": "^9.6",
+        "psalm/plugin-symfony": "^5.1",
+        "vimeo/psalm": "^5.18",
+        "weirdan/doctrine-psalm-plugin": "^2.9"
     },
     "config": {
         "allow-plugins": {

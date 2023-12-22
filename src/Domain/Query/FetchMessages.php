@@ -10,11 +10,11 @@ use Tailr\SuluMessengerFailedQueueBundle\Domain\Model\FailedMessageCollection;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Model\FailedMessageList;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Repository\FailedQueueRepositoryInterface;
 
-final class FetchMessages
+final class FetchMessages implements FetchMessagesInterface
 {
     public function __construct(
         private readonly FailedQueueRepositoryInterface $repository,
-        private readonly FetchMessageInterface $fetchAction,
+        private readonly FetchMessageInterface $fetchMessage,
     ) {
     }
 
@@ -23,7 +23,7 @@ final class FetchMessages
         $messages = [];
         foreach ($this->repository->findMessageIds($criteria) as $messageId) {
             try {
-                $messages[] = ($this->fetchAction)($messageId, withDetails: false);
+                $messages[] = ($this->fetchMessage)($messageId, withDetails: false);
             } catch (MessageDecodingFailedException) {
             }
         }
