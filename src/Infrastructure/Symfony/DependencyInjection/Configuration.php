@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder->getRootNode()
             ->children()
             ->scalarNode('failure_transport_service')
-            ->defaultValue('@messenger.transport.failed')
+            ->defaultValue('messenger.transport.failed')
             ->end()
             ->scalarNode('failure_transport_table')
             ->defaultValue('messenger_messages')
