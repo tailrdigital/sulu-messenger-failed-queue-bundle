@@ -6,7 +6,7 @@ Via the admin panel you are able to check the error/exception details of each fa
 
 ## Demo
 
-![Video]((https://github.com/stefliekens/sulu-messenger-failed-queue-bundle/assets/3245491/3c115b96-24a7-4bff-b967-5007677230b9))
+![Video](https://github.com/stefliekens/sulu-messenger-failed-queue-bundle/assets/3245491/3c115b96-24a7-4bff-b967-5007677230b9)
 
 ![Sulu Messenger Failed Queue In Action](/doc/images/sulu-messenger-failed-queue.gif)
 
