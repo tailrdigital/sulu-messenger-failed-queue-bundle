@@ -2,15 +2,17 @@ import {Requester} from "sulu-admin-bundle/services";
 import {runActionOnServer} from "../utilities/run-action-on-server";
 
 /**
- * @param {number} messageId
+ * @param {number[]} messageIdentifiers
  * @param {boolean} withRequeue
  * @returns {Promise<void>}
  */
 export async function retryMessage(
-    messageId,
+    messageIdentifiers,
     withRequeue,
 ) {
     await runActionOnServer(
-        Requester.put(`/admin/api/messenger-failed-queue/${messageId}/${withRequeue ? 'requeue' : 'retry'}`, {})
+        Requester.put(`/admin/api/messenger-failed-queue/${withRequeue ? 'requeue' : 'retry'}`, {
+            identifiers: messageIdentifiers
+        })
     );
 }
