@@ -1,6 +1,8 @@
 {
     "name": "tailrdigital/sulu-messenger-failed-queue-bundle",
+    "keywords": ["sulu", "messenger", "failed-queue"],
     "type": "symfony-bundle",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Tailr\\SuluMessengerFailedQueueBundle\\": "src/"
