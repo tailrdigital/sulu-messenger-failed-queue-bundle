@@ -10,6 +10,9 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
+use function Psl\Type\non_empty_string;
+use function Psl\Type\shape;
+
 class SuluMessengerFailedQueueExtension extends Extension implements PrependExtensionInterface
 {
     public function prepend(ContainerBuilder $container): void
@@ -46,7 +49,11 @@ class SuluMessengerFailedQueueExtension extends Extension implements PrependExte
         $loader->load('services.yaml');
 
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $config = shape([
+            'failure_transport_service' => non_empty_string(),
+            'failure_transport_table' => non_empty_string(),
+            'failure_transport_queue_name' => non_empty_string(),
+        ])->assert($this->processConfiguration($configuration, $configs));
 
         $container->setAlias(
             'sulu_messenger_failed_queue.transport',

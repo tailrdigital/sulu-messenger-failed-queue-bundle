@@ -9,6 +9,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * @psalm-suppress PossiblyNullReference, UndefinedInterfaceMethod, MixedMethodCall
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('sulu_messenger_failed_queue');

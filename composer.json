@@ -25,10 +25,10 @@
         "symfony/messenger": "^6.0"
     },
     "require-dev": {
+        "php-cs-fixer/shim": "^3.41",
         "phpro/symfony-conventions": "^1.5",
         "phpspec/prophecy-phpunit": "^2.1",
         "phpunit/phpunit": "^9.6",
-        "php-cs-fixer/shim": "^3.41",
         "psalm/plugin-symfony": "^5.1",
         "vimeo/psalm": "^5.18",
         "weirdan/doctrine-psalm-plugin": "^2.9"
