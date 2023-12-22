@@ -30,6 +30,7 @@ class RetryControllerTest extends TestCase
     {
         self::assertInstanceOf(SecuredControllerInterface::class, $this->controller);
         self::assertSame('tailr_failed_queue', $this->controller->getSecurityContext());
+        self::assertSame('en', $this->controller->getLocale(new Request()));
     }
 
     /** @test */

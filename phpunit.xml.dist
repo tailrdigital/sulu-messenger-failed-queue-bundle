@@ -14,7 +14,7 @@
     </testsuites>
 
     <php>
-        <env name="DATABASE_URL" value="postgresql://root:toor@localhost:5432/messenger-queue?serverVersion=14&amp;charset=utf8"/>
+        <env name="DATABASE_URL" value="postgresql://root:toor@127.0.0.1:5432/messenger-queue?serverVersion=14&amp;charset=utf8"/>
     </php>
 
     <coverage processUncoveredFiles="true">

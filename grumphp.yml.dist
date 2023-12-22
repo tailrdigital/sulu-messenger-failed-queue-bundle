@@ -17,3 +17,6 @@ grumphp:
         clover_coverage:
             clover_file: var/coverage.xml
             level: 100
+        git_commit_message:
+            metadata:
+                enabled: false

@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
+use Symfony\Component\Messenger\Exception\MessageDecodingFailedException;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessageInterface;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessages;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\SearchCriteria;
@@ -39,9 +40,11 @@ class FetchMessagesTest extends TestCase
 
         $messageOne = FailedMessages::testFailedMessage(1);
         $messageTwo = FailedMessages::testFailedMessage(2);
-        $this->repository->findMessageIds(Argument::is($listSearch))->willReturn([1, 2]);
+        $messageThree = FailedMessages::testFailedMessage(3);
+        $this->repository->findMessageIds(Argument::is($listSearch))->willReturn([1, 2, 3]);
         $this->fetchAction->__invoke(1, false)->willReturn($messageOne);
         $this->fetchAction->__invoke(2, false)->willReturn($messageTwo);
+        $this->fetchAction->__invoke(3, false)->willThrow(MessageDecodingFailedException::class);
 
         $this->repository->count(Argument::is($listSearch))->willReturn(20);
 

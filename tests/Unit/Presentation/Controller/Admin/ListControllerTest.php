@@ -8,6 +8,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Sulu\Component\Rest\ListBuilder\ListRestHelperInterface;
 use Sulu\Component\Security\SecuredControllerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Model\FailedMessageCollection;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Model\FailedMessageList;
@@ -43,6 +44,7 @@ class ListControllerTest extends TestCase
     {
         self::assertInstanceOf(SecuredControllerInterface::class, $this->controller);
         self::assertSame('tailr_failed_queue', $this->controller->getSecurityContext());
+        self::assertSame('en', $this->controller->getLocale(new Request()));
     }
 
     /** @test */

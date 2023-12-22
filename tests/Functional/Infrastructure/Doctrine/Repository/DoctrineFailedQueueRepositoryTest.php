@@ -84,6 +84,19 @@ class DoctrineFailedQueueRepositoryTest extends TestCase
         self::assertGreaterThan($ids[0], $ids[2]);
     }
 
+    /** @test */
+    public function it_can_find_message_ids_ordered_by_default(): void
+    {
+        $criteria = new SearchCriteria('', null, null, 0, 100);
+
+        $ids = $this->repository->findMessageIds($criteria);
+        $totalCount = $this->repository->count($criteria);
+
+        self::assertCount(3, $ids);
+        self::assertSame(3, $totalCount);
+        self::assertGreaterThan($ids[0], $ids[2]);
+    }
+
     protected function createFixtures(EntityManagerInterface $entityManager): void
     {
         $doctrineTransportConnection = new DoctrineTransportConnection([

@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Sulu\Component\Security\SecuredControllerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandlerInterface;
 use Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin\DeleteController;
 
@@ -29,6 +30,7 @@ class DeleteControllerTest extends TestCase
     {
         self::assertInstanceOf(SecuredControllerInterface::class, $this->controller);
         self::assertSame('tailr_failed_queue', $this->controller->getSecurityContext());
+        self::assertSame('en', $this->controller->getLocale(new Request()));
     }
 
     /** @test */
