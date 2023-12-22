@@ -51,9 +51,13 @@ export default class BulkReQueueToolbarAction extends AbstractListToolbarAction 
             >
                 {(this.error)
                     ? (
-                        <div style={errorStyle}><strong>{translate('An error occurred during the retry action:')}</strong> {this.error?.message}</div>
+                        <div style={errorStyle}>
+                            <strong>{translate('An error occurred during the retry action:')}</strong> {this.error?.message}
+                        </div>
                     ) : (
-                        <div style={successStyle}>{translate('The message was successfully pushed to the original transport/queue.')}</div>
+                        <div style={successStyle}>
+                            {translate('The message was successfully pushed to the original transport/queue.')}
+                        </div>
                     )
                 }
             </Dialog>
