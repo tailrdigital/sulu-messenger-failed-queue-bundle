@@ -10,3 +10,5 @@ services:
     arguments:
       - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Repository\FailedQueueRepository'
       - '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessageInterface'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessagesInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessages'

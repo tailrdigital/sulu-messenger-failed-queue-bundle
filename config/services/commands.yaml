@@ -3,12 +3,16 @@ services:
     arguments:
       - '@messenger.transport.failed'
 
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandlerInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandler'
+
   Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandler:
     arguments:
       - 'failed'
       - '@messenger.transport.failed'
       - '@messenger.routable_message_bus'
       - '@event_dispatcher'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandlerInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandler'
 
   Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RequeueHandler:
     arguments:
@@ -21,3 +25,5 @@ services:
         - 'Symfony\Component\Messenger\Stamp\SentToFailureTransportStamp'
         - 'Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineReceivedStamp'
         - 'Symfony\Component\Messenger\Stamp\TransportMessageIdStamp'
+
+  Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RequeueHandlerInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RequeueHandler'

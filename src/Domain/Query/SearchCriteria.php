@@ -8,8 +8,8 @@ final class SearchCriteria
 {
     public function __construct(
         private readonly string $searchString,
-        private readonly string $sortColumn,
-        private readonly string $sortDirection,
+        private readonly ?string $sortColumn,
+        private readonly ?string $sortDirection,
         private readonly int $offset,
         private readonly int $limit
     ) {
@@ -20,12 +20,12 @@ final class SearchCriteria
         return $this->searchString;
     }
 
-    public function sortColumn(): string
+    public function sortColumn(): ?string
     {
         return $this->sortColumn;
     }
 
-    public function sortDirection(): string
+    public function sortDirection(): ?string
     {
         return $this->sortDirection;
     }

@@ -10,7 +10,7 @@ use Tailr\SuluMessengerFailedQueueBundle\Domain\Model\FailedMessageCollection;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Model\FailedMessageList;
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Repository\FailedQueueRepositoryInterface;
 
-final class FetchMessages
+final class FetchMessages implements FetchMessagesInterface
 {
     public function __construct(
         private readonly FailedQueueRepositoryInterface $repository,

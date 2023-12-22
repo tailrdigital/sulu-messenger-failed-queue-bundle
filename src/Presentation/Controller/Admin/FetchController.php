@@ -6,7 +6,6 @@ namespace Tailr\SuluMessengerFailedQueueBundle\Presentation\Controller\Admin;
 
 use Sulu\Component\Security\SecuredControllerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +21,7 @@ final class FetchController extends AbstractSecuredMessengerFailedQueueControlle
     ) {
     }
 
-    public function __invoke(int $id, Request $request): Response
+    public function __invoke(int $id): Response
     {
         return new JsonResponse(
             $this->serializer->serialize(
