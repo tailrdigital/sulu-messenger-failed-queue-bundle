@@ -13,15 +13,16 @@ Via the admin panel you are able to check the error/exception details of each fa
 composer require tailrdigital/sulu-messenger-failed-queue-bundle
 ```
 
+#### Register the bundle
 Make sure the bundle is activated in `config/bundles.php`:
 
 ```php
 Tailr\SuluMessengerFailedQueueBundle\SuluMessengerFailedQueueBundle::class => ['all' => true]
 ```
 
-#### assets/admin/package.json
+#### Add node dependency
 
-Register an additional module in your admin's package.json dependencies: 
+Register an additional module in your admin's node dependencies via `assets/admin/package.json`: 
 
 ```json
 {
@@ -31,9 +32,7 @@ Register an additional module in your admin's package.json dependencies:
 }
 ```
 
-#### assets/admin/index.js
-
-Make sure to load the additional module in your admin's `index.js` or `app.js` file.
+Make sure to load the additional node module in your admin's `assets/admin/index.js` or `assets/admin/app.js` file:
 
 ```js
 import 'sulu-messenger-failed-queue-bundle';
