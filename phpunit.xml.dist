@@ -21,6 +21,11 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <file>src/SuluMessengerFailedQueueBundle.php</file>
+            <directory suffix=".php">src/Infrastructure/Sulu/Admin</directory>
+            <directory suffix=".php">src/Infrastructure/Symfony/DependencyInjection</directory>
+        </exclude>
         <report>
             <clover outputFile="var/coverage.xml"/>
         </report>
