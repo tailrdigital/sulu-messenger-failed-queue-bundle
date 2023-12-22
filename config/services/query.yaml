@@ -1,7 +1,7 @@
 services:
   Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessage:
     arguments:
-      - '@messenger.transport.failed'
+      - '@sulu_messenger_failed_queue.transport'
       - '@serializer'
 
   Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessageInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Query\FetchMessage'

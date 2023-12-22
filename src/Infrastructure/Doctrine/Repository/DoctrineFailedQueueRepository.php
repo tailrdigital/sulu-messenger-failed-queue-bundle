@@ -18,6 +18,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly string $tableName = 'messenger_messages',
+        private readonly string $queueName = 'failed',
     ) {
     }
 
@@ -55,7 +56,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
         $queryBuilder->select('m.id')
             ->from($this->tableName, 'm')
             ->andWhere($queryBuilder->expr()->eq('queue_name', ':queueName'))
-            ->setParameter('queueName', 'failed');
+            ->setParameter('queueName', $this->queueName);
         if (!is_empty($searchString = $criteria->searchString())) {
             $queryBuilder->andWhere($queryBuilder->expr()->like('lower(m.body)', ':search'))
                 ->setParameter('search', '%'.lowercase($searchString).'%');

@@ -44,5 +44,16 @@ class SuluMessengerFailedQueueExtension extends Extension implements PrependExte
         $loader->load('query.yaml');
         $loader->load('repositories.yaml');
         $loader->load('services.yaml');
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setAlias(
+            'sulu_messenger_failed_queue.transport',
+            $config['failure_transport_service']
+        );
+
+        $container->setParameter('sulu_messenger_failed_queue.table', $config['failure_transport_table']);
+        $container->setParameter('sulu_messenger_failed_queue.queue_name', $config['failure_transport_queue_name']);
     }
 }

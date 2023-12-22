@@ -2,4 +2,6 @@ services:
   Tailr\SuluMessengerFailedQueueBundle\Infrastructure\Doctrine\Repository\DoctrineFailedQueueRepository:
     arguments:
       - '@doctrine.orm.entity_manager'
+      - '%sulu_messenger_failed_queue.table%'
+      - '%sulu_messenger_failed_queue.queue_name%'
   Tailr\SuluMessengerFailedQueueBundle\Domain\Repository\FailedQueueRepository: '@Tailr\SuluMessengerFailedQueueBundle\Infrastructure\Doctrine\Repository\DoctrineFailedQueueRepository'

@@ -14,6 +14,8 @@ use Symfony\Component\Messenger\Bridge\Doctrine\Transport\Connection as Doctrine
 use Tailr\SuluMessengerFailedQueueBundle\Domain\Query\SearchCriteria;
 use Tailr\SuluMessengerFailedQueueBundle\Infrastructure\Doctrine\Repository\DoctrineFailedQueueRepository;
 
+use function Psl\Result\wrap;
+
 class DoctrineFailedQueueRepositoryTest extends TestCase
 {
     private Connection $connection;
@@ -32,7 +34,6 @@ class DoctrineFailedQueueRepositoryTest extends TestCase
             ORMSetup::createAttributeMetadataConfiguration([], true)
         );
         $this->repository = new DoctrineFailedQueueRepository($this->entityManager);
-
         $this->cleanup();
         $this->createFixtures($this->entityManager);
     }
@@ -45,7 +46,7 @@ class DoctrineFailedQueueRepositoryTest extends TestCase
 
     private function cleanup(): void
     {
-        $this->connection->executeQuery('TRUNCATE messenger_messages');
+        wrap(fn () => $this->connection->executeQuery('TRUNCATE messenger_messages'));
     }
 
     /** @test */

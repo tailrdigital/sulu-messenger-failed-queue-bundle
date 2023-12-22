@@ -1,14 +1,14 @@
 services:
   Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandler:
     arguments:
-      - '@messenger.transport.failed'
+      - '@sulu_messenger_failed_queue.transport'
 
   Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandlerInterface: '@Tailr\SuluMessengerFailedQueueBundle\Domain\Command\DeleteHandler'
 
   Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RetryHandler:
     arguments:
       - 'failed'
-      - '@messenger.transport.failed'
+      - '@sulu_messenger_failed_queue.transport'
       - '@messenger.routable_message_bus'
       - '@event_dispatcher'
 
@@ -16,7 +16,7 @@ services:
 
   Tailr\SuluMessengerFailedQueueBundle\Domain\Command\RequeueHandler:
     arguments:
-      $receiver: '@messenger.transport.failed'
+      $receiver: '@sulu_messenger_failed_queue.transport'
       $messageBus: '@messenger.routable_message_bus'
       $stampsToRemove:
         - 'Symfony\Component\Messenger\Stamp\ErrorDetailsStamp'
