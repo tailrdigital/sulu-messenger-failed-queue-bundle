@@ -55,7 +55,7 @@ class RequeueControllerTest extends TestCase
             'identifiers' => [1, 2],
         ]));
 
-        $this->handler->__invoke(1)->willThrow(new \RuntimeException('Something failed'));
+        $this->handler->__invoke(1)->willThrow(new RuntimeException('Something failed'));
 
         $response = ($this->controller)($request);
 

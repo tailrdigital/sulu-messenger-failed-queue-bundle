@@ -53,7 +53,7 @@ final class FetchMessage implements FetchMessageInterface
             ->withMessageDetails($this->serializer->serialize($message->getMessage(), 'json'))
             ->withMessageBusName($message->last(BusNameStamp::class)?->getBusName())
             ->withMessageOriginalTransport($message->last(SentToFailureTransportStamp::class)?->getOriginalReceiverName())
-            ->withErrorTrace($lastErrorStamp?->getFlattenException()?->getTraceAsString())
+            ->withErrorTrace($lastErrorStamp?->getFlattenException()?->getAsString())
             ->withFailedDates(...array_map(
                 fn (RedeliveryStamp $stamp): \DateTimeInterface => $stamp->getRedeliveredAt(),
                 $message->all(RedeliveryStamp::class)
