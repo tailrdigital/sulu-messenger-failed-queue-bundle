@@ -29,7 +29,7 @@ Register an additional module in your admin's node dependencies via `assets/admi
 ```json
 {
   "dependencies": {
-    "sulu-messenger-failed-queue-bundle": "file:node_modules/@sulu/vendor/tailr/sulu-messenger-failed-queue-bundle/assets/admin"
+    "sulu-messenger-failed-queue-bundle": "file:node_modules/@sulu/vendor/tailrdigital/sulu-messenger-failed-queue-bundle/assets/admin"
   }  
 }
 ```
