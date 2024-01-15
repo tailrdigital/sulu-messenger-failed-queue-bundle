@@ -22,6 +22,19 @@ Make sure the bundle is activated in `config/bundles.php`:
 Tailr\SuluMessengerFailedQueueBundle\SuluMessengerFailedQueueBundle::class => ['all' => true]
 ```
 
+#### Register new admin routes
+
+You need to manually register the failed queue admin controller routes in the file `config/routes_admin.yaml`.
+
+```yaml
+# config/routes_admin.yaml
+
+tailr_failed_queue:
+    resource: '@SuluMessengerFailedQueueBundle/Presentation/Controller/Admin'
+    type: attribute
+    prefix: /admin/api
+```
+
 #### Add node dependency
 
 Register an additional module in your admin's node dependencies via `assets/admin/package.json`: 
@@ -53,6 +66,8 @@ npm run watch
 You can set up the symfony/messenger queue according to this example configuration inside `config/packages/messenger.yaml`
 
 ```yaml
+# config/packages/messenger.yaml
+
 framework:
     messenger:
         failure_transport: failed
@@ -69,6 +84,8 @@ Make sure you've set the correct permissions in the Sulu admin for this package.
 If you have a non-default failure queue configuration, you are able to overwrite our default settings by creating a `config/packages/sulu_messenger_failed_queue.yaml` file.
 
 ```yaml
+# config/packages/sulu_messenger_failed_queue.yaml
+
 sulu_messenger_failed_queue:
     failure_transport_service: 'messenger.transport.failed_high_priority' # Default 'messenger.transport.failed'
     failure_transport_table: 'failed_messages' # Default 'messenger_messages'
