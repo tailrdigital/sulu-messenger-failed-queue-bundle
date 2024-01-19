@@ -32,6 +32,8 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
             default => $column,
         };
         $sortDirection = $criteria->sortDirection();
+
+        /** @psalm-suppress RiskyTruthyFalsyComparison */
         ($sortColumn && $sortDirection) ?
             $queryBuilder->orderBy('m.'.$sortColumn, $sortDirection) :
             $queryBuilder->orderBy('m.created_at', 'DESC');
