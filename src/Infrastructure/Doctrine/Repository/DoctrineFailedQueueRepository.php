@@ -25,6 +25,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
     public function findMessageIds(SearchCriteria $criteria): array
     {
         $queryBuilder = $this->buildQuery($criteria);
+        $queryBuilder->select('m.id');
         $queryBuilder->setMaxResults($criteria->limit());
         $queryBuilder->setFirstResult($criteria->offset());
         $sortColumn = match ($column = $criteria->sortColumn()) {
@@ -47,7 +48,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
     public function count(SearchCriteria $criteria): int
     {
         $queryBuilder = $this->buildQuery($criteria);
-        $queryBuilder->resetQueryPart('select')->select('count(m.id)');
+        $queryBuilder->select('count(m.id)');
 
         return (int) $queryBuilder->executeQuery()->fetchOne();
     }
@@ -55,7 +56,7 @@ final class DoctrineFailedQueueRepository implements FailedQueueRepositoryInterf
     private function buildQuery(SearchCriteria $criteria): Query\QueryBuilder
     {
         $queryBuilder = $this->entityManager->getConnection()->createQueryBuilder();
-        $queryBuilder->select('m.id')
+        $queryBuilder
             ->from($this->tableName, 'm')
             ->andWhere($queryBuilder->expr()->eq('queue_name', ':queueName'))
             ->setParameter('queueName', $this->queueName);
