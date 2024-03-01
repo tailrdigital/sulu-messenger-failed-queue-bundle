@@ -1,5 +1,6 @@
 import {Requester} from "sulu-admin-bundle/services";
 import {runActionOnServer} from "../utilities/run-action-on-server";
+import symfonyRouting from "fos-jsrouting/router";
 
 /**
  * @param {number[]} messageIdentifiers
@@ -11,7 +12,7 @@ export async function retryMessage(
     withRequeue,
 ) {
     await runActionOnServer(
-        Requester.put(`/admin/api/messenger-failed-queue/${withRequeue ? 'requeue' : 'retry'}`, {
+        Requester.put(symfonyRouting.generate(`tailr.messenger_failed_queue_${withRequeue ? 'requeue' : 'retry'}`), {
             identifiers: messageIdentifiers
         })
     );

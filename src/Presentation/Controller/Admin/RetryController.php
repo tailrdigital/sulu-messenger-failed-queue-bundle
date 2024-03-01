@@ -16,7 +16,7 @@ use function Psl\Type\int;
 use function Psl\Type\shape;
 use function Psl\Type\vec;
 
-#[Route(path: '/messenger-failed-queue/retry', name: 'tailr.messenger_failed_queue_retry', methods: ['PUT'])]
+#[Route(path: '/messenger-failed-queue/retry', name: 'tailr.messenger_failed_queue_retry', options: ['expose' => true], methods: ['PUT'])]
 final class RetryController extends AbstractSecuredMessengerFailedQueueController implements SecuredControllerInterface
 {
     public function __construct(
