@@ -16,7 +16,7 @@ use function Psl\Type\int;
 use function Psl\Type\shape;
 use function Psl\Type\vec;
 
-#[Route(path: '/messenger-failed-queue/requeue', name: 'app.messenger_failed_queue_requeue', methods: ['PUT'])]
+#[Route(path: '/messenger-failed-queue/requeue', name: 'tailr.messenger_failed_queue_requeue', methods: ['PUT'])]
 final class RequeueController extends AbstractSecuredMessengerFailedQueueController implements SecuredControllerInterface
 {
     public function __construct(
