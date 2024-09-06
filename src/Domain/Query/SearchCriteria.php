@@ -11,7 +11,7 @@ final class SearchCriteria
         private readonly ?string $sortColumn,
         private readonly ?string $sortDirection,
         private readonly int $offset,
-        private readonly int $limit
+        private readonly int $limit,
     ) {
     }
 
