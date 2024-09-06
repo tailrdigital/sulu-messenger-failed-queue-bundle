@@ -19,7 +19,7 @@
         "doctrine/dbal": "^3.0",
         "doctrine/orm": "^2.14",
         "sulu/sulu": "^2.5",
-        "jackalope/jackalope-doctrine-dbal": "^1.7",
+        "jackalope/jackalope-doctrine-dbal": "^1.6 || ^2.0",
         "symfony/config": "^6.0",
         "symfony/console": "^6.0",
         "symfony/dependency-injection": "^6.0",
