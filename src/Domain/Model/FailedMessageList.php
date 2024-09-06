@@ -8,7 +8,7 @@ final class FailedMessageList
 {
     public function __construct(
         private readonly FailedMessageCollection $failedMessageCollection,
-        private readonly int $totalCount
+        private readonly int $totalCount,
     ) {
     }
 
