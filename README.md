@@ -1,3 +1,9 @@
+> ## Repository abandoned 2025-11-19
+>
+> This repository has moved to [phpro/sulu-messenger-failed-queue-bundle](https://github.com/phpro/sulu-messenger-failed-queue-bundle/).
+> You can follow a [migration guide](https://github.com/phpro/sulu-messenger-failed-queue-bundle/releases/tag/1.0.0) to upgrade your project.
+
+
 # Sulu Messenger Failed Queue
 
 This package provides a Sulu admin panel for managing the failed messages in the failure queue of symfony/messenger. 
